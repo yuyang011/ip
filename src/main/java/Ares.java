@@ -38,9 +38,22 @@ public class Ares {
                 System.out.println(" " + tasks[taskNum].toString());
                 System.out.println(line);
             } else {
-                tasks[tasksSize] = new Task(input);
+                if (input.startsWith("todo")) {
+                    tasks[tasksSize] = new Todo(input.substring(5));
+                }
+                if (input.startsWith("deadline")) {
+                    String[] parts = input.split(" /by ");
+                    tasks[tasksSize]= new Deadline(parts[0].substring(9), parts[1]);
+                }
+                if (input.startsWith("event")) {
+                    String[] parts = input.split(" /from ");
+                    String[] subParts = parts[1].split(" /to ");
+                    tasks[tasksSize]= new Event(parts[0].substring(6), subParts[0], subParts[1]);
+                }
                 tasksSize++;
-                System.out.println("added: " + input);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(" " + tasks[tasksSize - 1]);
+                System.out.println("Now you have " + tasksSize + " tasks in the list.");
                 System.out.println(line);
             }
         }
