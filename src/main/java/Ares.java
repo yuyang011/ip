@@ -8,7 +8,7 @@ public class Ares {
         System.out.println("Its been awhile\nWhat can I do for you today?\n");
         System.out.println(line);
 
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int tasksSize = 0;
 
         Scanner scanner = new Scanner(System.in);
@@ -20,12 +20,25 @@ public class Ares {
                 System.out.println(line);
                 break;
             } else if (input.equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < tasksSize; i++){
-                    System.out.println(i + 1 + "." + " " + tasks[i]);
+                    System.out.println(i + 1 + "." + tasks[i]);
                 }
                 System.out.println(line);
+            } else if (input.startsWith("mark")) {
+                int taskNum = Integer.parseInt(input.split(" ")[1]) - 1;
+                tasks[taskNum].markAsDone();
+                System.out.println("NICE, I have marked this task as completed:");
+                System.out.println(" " + tasks[taskNum].toString());
+                System.out.println(line);
+            } else if (input.startsWith("unmark")) {
+                int taskNum = Integer.parseInt(input.split(" ")[1]) - 1;
+                tasks[taskNum].markAsNotDone();
+                System.out.println("Alright, I have marked this task as not completed yet:");
+                System.out.println(" " + tasks[taskNum].toString());
+                System.out.println(line);
             } else {
-                tasks[tasksSize] = input;
+                tasks[tasksSize] = new Task(input);
                 tasksSize++;
                 System.out.println("added: " + input);
                 System.out.println(line);
