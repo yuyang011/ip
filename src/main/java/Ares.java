@@ -1,7 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.*;
 
 public class Ares {
+    private static final String FILE_PATH = "./data/ares.txt";
     public static void main(String[] args) {
         String line = "--------------------------------------------------------------";
         String indent = "   ";
@@ -12,6 +14,8 @@ public class Ares {
 
         ArrayList<Task> tasks = new ArrayList<>();
         int counter = 0;
+
+        loadTasks(tasks);
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -40,6 +44,7 @@ public class Ares {
                     System.out.println(indent + "NICE, I have marked this task as completed:");
                     System.out.println(indent + "  " + tasks.get(taskNum).toString());
                     System.out.println(indent + line);
+                    saveTasks(tasks);
                 } else if (input.startsWith("unmark")) {
                     int taskNum = Integer.parseInt(input.split(" ")[1]) - 1;
                     if (taskNum < 0) {
@@ -52,6 +57,7 @@ public class Ares {
                     System.out.println(indent + "Alright, I have marked this task as not completed yet:");
                     System.out.println(indent + "  " + tasks.get(taskNum).toString());
                     System.out.println(indent + line);
+                    saveTasks(tasks);
                 } else if (input.startsWith("todo") || input.startsWith("deadline") || input.startsWith("event")) {
                     if (input.startsWith("todo")) {
                         if (input.trim().equals("todo")) {
@@ -88,6 +94,7 @@ public class Ares {
                     System.out.println(indent + "  " + tasks.get(counter - 1));
                     System.out.println(indent + "Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(indent + line);
+                    saveTasks(tasks);
                 } else if (input.startsWith("delete")) {
                     int taskNum = Integer.parseInt(input.split(" ")[1]) - 1;
                     if (taskNum < 0) {
@@ -98,6 +105,7 @@ public class Ares {
                     System.out.println(indent + "  " + deletedTask);
                     System.out.println(indent + "Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(indent + line);
+                    saveTasks(tasks);
                 } else {
                     throw new AresException("??? I do not understand what you entered");
                 }
@@ -108,6 +116,65 @@ public class Ares {
                 System.out.println(indent + "STOP RIGHT THERE!! An unexpected error occurred: " + e.getMessage());
                 System.out.println(indent + line);
             }
+        }
+    }
+    private static void loadTasks(ArrayList<Task> tasks) {
+        try {
+            File file = new File(FILE_PATH);
+            if (!file.exists()) {
+                return;
+            }
+            FileReader fileReader = new FileReader(file);
+            BufferedReader reader = new BufferedReader(fileReader);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" \\| ");
+                if (parts.length < 2) {
+                    break;
+                }
+                String type = parts[0];
+                String description = parts[2];
+                if (type.equals("T")) {
+                    Task newTask = new Todo(description);
+                    if (parts[1].equals("1")) {
+                        newTask.markAsDone();
+                    }
+                    tasks.add(newTask);
+                } else if (type.equals("D")) {
+                    Task newTask = new Deadline(description, parts[3]);
+                    if (parts[1].equals("1")) {
+                        newTask.markAsDone();
+                    }
+                    tasks.add(newTask);
+                } else if (type.equals("E")) {
+                    String timings[] = parts[3].split("-");
+                    Task newTask = new Event(description, timings[0], timings[1]);
+                    if (parts[1].equals("1")) {
+                        newTask.markAsDone();
+                    }
+                    tasks.add(newTask);
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Error loading tasks from file: " + e.getMessage());
+        }
+    }
+
+    private static void saveTasks(ArrayList<Task> tasks) {
+        File file = new File("./data");
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        try {
+            FileWriter fileWriter = new FileWriter(FILE_PATH);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+            for (Task task : tasks) {
+                writer.write(task.toFile() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error saving tasks to file: " + e.getMessage());
         }
     }
 }

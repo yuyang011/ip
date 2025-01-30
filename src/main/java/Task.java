@@ -23,6 +23,10 @@ public class Task {
         return this.isDone;
     }
 
+    public String toFile() {
+        return " | " + (status() ? "1" : "0") + " | " + this.description ;
+    }
+
     @Override
     public String toString() {
         return ("[" + getStatusIcon() + "]" + " " + this.description);
