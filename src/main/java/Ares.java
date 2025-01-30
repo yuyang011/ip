@@ -133,7 +133,6 @@ public class Ares {
                     break;
                 }
                 String type = parts[0];
-                boolean status = parts[1].equals("1");
                 String description = parts[2];
                 if (type.equals("T")) {
                     Task newTask = new Todo(description);
