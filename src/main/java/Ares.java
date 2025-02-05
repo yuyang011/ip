@@ -1,9 +1,18 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Ares {
     private static final String FILE_PATH = "./data/ares.txt";
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     public static void main(String[] args) {
         String line = "--------------------------------------------------------------";
         String indent = "   ";
@@ -73,7 +82,12 @@ public class Ares {
                         if (parts.length < 2 || parts[1].isEmpty()) {
                             throw new AresException("STOP RIGHT THERE!!! You forgotten to write a deadline timing");
                         }
-                        tasks.add(new Deadline(parts[0].substring(9), parts[1]));
+                        try {
+                            LocalDateTime by = LocalDateTime.parse(parts[1], DATE_TIME_FORMAT);
+                            tasks.add(new Deadline(parts[0].substring(9), by));
+                        } catch (DateTimeParseException e) {
+                            throw new AresException("STOP RIGHT THERE!!! The correct time format is YYYY-MM-DD HHmm");
+                        }
                     }
                     if (input.startsWith("event")) {
                         if ((!input.trim().contains("/from")) || (!input.trim().contains("/to"))) {
@@ -87,7 +101,13 @@ public class Ares {
                         if (subParts.length < 2) {
                             throw new AresException("STOP RIGHT THERE!!! You entered an incomplete event timing");
                         }
-                        tasks.add(new Event(parts[0].substring(6), subParts[0], subParts[1]));
+                        try {
+                            LocalDateTime from = LocalDateTime.parse(subParts[0], DATE_TIME_FORMAT);
+                            LocalDateTime to = LocalDateTime.parse(subParts[1], DATE_TIME_FORMAT);
+                            tasks.add(new Event(parts[0].substring(6), from, to));
+                        } catch (DateTimeParseException e) {
+                            throw new AresException("STOP RIGHT THERE!!! The correct time format is YYYY-MM-DD HHmm");
+                        }
                     }
                     counter++;
                     System.out.println(indent + "Got it. I've added this task:");
@@ -141,14 +161,17 @@ public class Ares {
                     }
                     tasks.add(newTask);
                 } else if (type.equals("D")) {
-                    Task newTask = new Deadline(description, parts[3]);
+                    LocalDateTime by = LocalDateTime.parse(parts[3], DATE_TIME_FORMAT);
+                    Task newTask = new Deadline(description, by);
                     if (parts[1].equals("1")) {
                         newTask.markAsDone();
                     }
                     tasks.add(newTask);
                 } else if (type.equals("E")) {
-                    String timings[] = parts[3].split("-");
-                    Task newTask = new Event(description, timings[0], timings[1]);
+                    String[] timings = parts[3].split(" - ");
+                    LocalDateTime from = LocalDateTime.parse(timings[0], DATE_TIME_FORMAT);
+                    LocalDateTime to = LocalDateTime.parse(timings[1], DATE_TIME_FORMAT);
+                    Task newTask = new Event(description, from, to);
                     if (parts[1].equals("1")) {
                         newTask.markAsDone();
                     }
