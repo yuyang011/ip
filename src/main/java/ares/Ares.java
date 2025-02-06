@@ -1,3 +1,12 @@
+package ares;
+
+import ares.storage.Storage;
+import ares.ui.Ui;
+import ares.task.TaskList;
+import ares.exception.AresException;
+import ares.command.Command;
+import ares.parser.Parser;
+
 public class Ares {
 
     private Storage storage;
