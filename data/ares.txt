@@ -1,3 +1,2 @@
-E | 0 | project meeting | 2001-07-22 2311 - 2001-06-23 1000
+E | 0 | project meeting | 2001-06-22 1800 - 2001-06-23 2000
 D | 0 | return book | 2001-06-22 1800
-D | 0 | return house | 2001-07-22 2000
