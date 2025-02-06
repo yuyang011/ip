@@ -1,4 +1,13 @@
-class DeleteCommand extends Command {
+package ares.command;
+
+import ares.ui.Ui;
+import ares.task.Task;
+import ares.task.TaskList;
+import ares.storage.Storage;
+import ares.exception.AresException;
+import ares.exception.OutOfBoundException;
+
+public class DeleteCommand extends Command {
     private int taskNum;
 
     public DeleteCommand(int taskNum) {

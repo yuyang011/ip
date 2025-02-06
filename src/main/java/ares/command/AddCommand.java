@@ -1,4 +1,12 @@
-class AddCommand extends Command {
+package ares.command;
+
+import ares.ui.Ui;
+import ares.task.Task;
+import ares.task.TaskList;
+import ares.storage.Storage;
+import ares.exception.AresException;
+
+public class AddCommand extends Command {
     private final Task description;
 
     public AddCommand(Task description) {

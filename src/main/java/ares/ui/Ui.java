@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package ares.ui;
+
+import ares.task.TaskList;
+import ares.task.Task;
 import java.util.Scanner;
 
 public class Ui {
@@ -13,7 +16,8 @@ public class Ui {
     public void printWelcome() {
         printLine();
         System.out.println(INDENT + "Hello! I'm Ares");
-        System.out.println(INDENT + "Its been awhile\n" + INDENT + "What can I do for you today?");
+        System.out.println(INDENT + "Its been awhile");
+        System.out.println(INDENT + "What can I do for you today?");
         printLine();
     }
 
@@ -27,7 +31,7 @@ public class Ui {
 
     public void printBye() {
         System.out.println(INDENT + "Nice chatting with you today\n" + INDENT + "See you again next time.");
-        System.out.println(INDENT + LINE);
+        printLine();
     }
 
     public void printList(TaskList tasks) {
