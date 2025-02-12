@@ -13,6 +13,7 @@ import ares.command.ExitCommand;
 import ares.command.UnmarkCommand;
 import ares.command.ListCommand;
 import ares.command.DeleteCommand;
+import ares.command.FindCommand;
 import ares.task.Todo;
 import ares.task.Event;
 import ares.task.Deadline;
@@ -35,6 +36,7 @@ public class Parser {
         case "unmark":
             return new UnmarkCommand(parseTaskNumber(arguments));
         case "todo":
+            checkDescription(parts);
             Todo todo = new Todo(parts[1]);
             return new AddCommand(todo);
         case "deadline":
@@ -51,6 +53,9 @@ public class Parser {
             return new AddCommand(event);
         case "delete":
             return new DeleteCommand(parseTaskNumber(arguments));
+        case "find":
+            checkDescription(parts);
+            return new FindCommand(arguments);
         default:
             throw new AresException("I do not understand what you entered");
         }
@@ -73,6 +78,12 @@ public class Parser {
             return LocalDateTime.parse(dateTime, DATE_TIME_FORMAT);
         } catch (DateTimeParseException e) {
             throw new AresException("The correct time format is YYYY-MM-DD HHmm");
+        }
+    }
+
+    private static void checkDescription(String[] inputParts) throws AresException {
+        if (inputParts.length == 1 || inputParts[1].trim().isEmpty()) {
+            throw new AresException("Invalid description entered!!!");
         }
     }
 }
