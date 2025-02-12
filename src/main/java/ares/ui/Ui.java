@@ -2,6 +2,7 @@ package ares.ui;
 
 import ares.task.TaskList;
 import ares.task.Task;
+
 import java.util.Scanner;
 
 public class Ui {

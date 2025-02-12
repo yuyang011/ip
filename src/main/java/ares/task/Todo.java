@@ -1,8 +1,7 @@
 package ares.task;
 
 public class Todo extends Task {
-
-    protected String by;
+    private String by;
 
     public Todo(String description) {
         super(description);
