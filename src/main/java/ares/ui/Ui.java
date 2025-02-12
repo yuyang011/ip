@@ -73,6 +73,19 @@ public class Ui {
         System.out.println(INDENT + LINE);
     }
 
+    public void printFoundList(TaskList sameTasks) {
+        if (sameTasks.isEmpty()) {
+            System.out.println(INDENT + "No matching tasks found.");
+            System.out.println(INDENT + LINE);
+            return;
+        }
+        System.out.println(INDENT + "Here are the matching tasks in your list:");
+        for (int i = 0; i < sameTasks.size(); i++) {
+            System.out.println(INDENT + (i + 1) + "." + sameTasks.getTask(i));
+        }
+        System.out.println(INDENT + LINE);
+    }
+
     public void printMessage(String message) {
         System.out.println(message);
     }

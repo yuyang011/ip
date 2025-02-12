@@ -1,6 +1,7 @@
 package ares.task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -29,7 +30,21 @@ public class TaskList {
         return tasks.size();
     }
 
-    public ArrayList<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
+    }
+
+    public boolean isEmpty() {
+        return tasks.isEmpty();
+    }
+
+    public TaskList findTasks(String keyword) {
+        TaskList found = new TaskList();
+        for(Task task : this.tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                found.addTask(task);
+            }
+        }
+        return found;
     }
 }
