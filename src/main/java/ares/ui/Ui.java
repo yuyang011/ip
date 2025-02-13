@@ -4,15 +4,24 @@ import ares.task.TaskList;
 import ares.task.Task;
 import java.util.Scanner;
 
+/**
+ * Shows the interaction with the user by displaying messages and TaskList.
+ */
 public class Ui {
     private static final String LINE = "--------------------------------------------------------------";
     private static final String INDENT = "   ";
     private Scanner scanner;
 
+    /**
+     * Constructs a new UI to reads input from user.
+     */
     public Ui() {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Displays a welcome message for the user.
+     */
     public void printWelcome() {
         printLine();
         System.out.println(INDENT + "Hello! I'm Ares");
@@ -21,19 +30,31 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Displays a line for separating the messages that is displayed.
+     */
     public void printLine() {
         System.out.println(INDENT + LINE);
     }
 
+    /**
+     * Reads the next input from the user.
+     */
     public String readNextLine() {
         return scanner.nextLine();
     }
 
+    /**
+     * Displays a goodbye message for the user.
+     */
     public void printBye() {
         System.out.println(INDENT + "Nice chatting with you today\n" + INDENT + "See you again next time.");
         printLine();
     }
 
+    /**
+     * Displays all tasks in the TaskList for the user.
+     */
     public void printList(TaskList tasks) {
         System.out.println(INDENT + "Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -42,18 +63,27 @@ public class Ui {
         System.out.println(INDENT + LINE);
     }
 
+    /**
+     * Displays a confirmation that the task is marked as done for the user.
+     */
     public void printMark(TaskList tasks, int taskNum) {
         System.out.println(INDENT + "NICE, I have marked this task as completed:");
         System.out.println(INDENT + "  " + tasks.getTask(taskNum).toString());
         System.out.println(INDENT + LINE);
     }
 
+    /**
+     * Displays a confirmation that the task is unmarked as not done for the user.
+     */
     public void printUnmark(TaskList tasks, int taskNum) {
         System.out.println(INDENT + "Alright, I have marked this task as not completed yet:");
         System.out.println(INDENT + "  " + tasks.getTask(taskNum).toString());
         System.out.println(INDENT + LINE);
     }
 
+    /**
+     * Displays a confirmation that the task is added into the TaskList for the user.
+     */
     public void printInserted(TaskList tasks, int counter) {
         System.out.println(INDENT + "Got it. I've added this task:");
         System.out.println(INDENT + "  " + tasks.getTask(counter - 1));
@@ -61,6 +91,9 @@ public class Ui {
         System.out.println(INDENT + LINE);
     }
 
+    /**
+     * Displays a confirmation that the task is deleted from the TaskList for the user.
+     */
     public void printDeleted(TaskList tasks, Task deletedTask) {
         System.out.println(INDENT + "Noted. I've removed this task:");
         System.out.println(INDENT + "  " + deletedTask);
@@ -68,11 +101,17 @@ public class Ui {
         System.out.println(INDENT + LINE);
     }
 
+    /**
+     * Displays the error occurred when executing the program for the user.
+     */
     public void printAresException(String message) {
         System.out.println("STOP RIGHT THERE!!! " + message);
         System.out.println(INDENT + LINE);
     }
 
+    /**
+     * Displays a message for the user.
+     */
     public void printMessage(String message) {
         System.out.println(message);
     }

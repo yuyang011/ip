@@ -17,14 +17,28 @@ import ares.task.Event;
 import ares.task.Deadline;
 import ares.exception.AresException;
 
+/**
+ * Represents a class that handles saving and loading tasks to a file.
+ */
 public class Storage {
     private final String filePath;
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    /**
+     * Constructs a new Storage with the specified filePath.
+     *
+     * @param filePath The path to the file where tasks are stored or loaded from.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the specified file and returns them as a list.
+     *
+     * @return A list containing all tasks in the specified file.
+     * @throws AresException If an error occurs when reading from the file with invalid format.
+     */
     public ArrayList<Task> load() throws AresException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -73,6 +87,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Loads tasks from the specified file and returns them as a list.
+     *
+     * @param tasks The list of tasks to be saved into the specified file.
+     * @throws AresException If an error occurs when writing to the file.
+     */
     public void save(TaskList tasks) throws AresException {
         File file = new File("./data");
         if (!file.exists()) {

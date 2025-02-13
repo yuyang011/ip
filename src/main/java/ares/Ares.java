@@ -7,12 +7,20 @@ import ares.exception.AresException;
 import ares.command.Command;
 import ares.parser.Parser;
 
+/**
+ * Main class that acts as the entry point for the Ares bot.
+ */
 public class Ares {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a new Ares with a specific filePath.
+     *
+     * @param filePath The path to the file where tasks are stored or loaded from.
+     */
     public Ares(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +32,9 @@ public class Ares {
         }
     }
 
+    /**
+     * Starts the Ares bot program.
+     */
     public void run() {
         ui.printWelcome();
         boolean isExit = false;
@@ -40,6 +51,9 @@ public class Ares {
         }
     }
 
+    /**
+     * Entry point of the Ares bot program.
+     */
     public static void main(String[] args) {
         new Ares("data/ares.txt").run();
     }
