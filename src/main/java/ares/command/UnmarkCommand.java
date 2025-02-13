@@ -9,13 +9,29 @@ import ares.storage.Storage;
 import ares.exception.AresException;
 import ares.exception.OutOfBoundException;
 
+/**
+ * Represents a command to unmark the tasks in the TaskList as not Done by removing the X.
+ */
 public class UnmarkCommand extends Command {
     private int taskNum;
 
+    /**
+     * Constructs a new UnmarkCommand with the specified task index.
+     *
+     * @param taskNum The index of the task to be deleted.
+     */
     public UnmarkCommand(int taskNum) {
         this.taskNum = taskNum;
     }
 
+    /**
+     * Executes the unmark command by unmarking the tasks in the TaskList as not Done by removing the X.
+     *
+     * @param tasks   The list of tasks.
+     * @param ui      The user interface for displaying messages.
+     * @param storage The storage handler for saving and loading tasks.
+     * @throws AresException If an error occurs while saving or the index provided is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
         if (taskNum >= tasks.size()) {

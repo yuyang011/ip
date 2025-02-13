@@ -20,9 +20,19 @@ import ares.task.Todo;
 import ares.task.Event;
 import ares.task.Deadline;
 
+/**
+ * Represents a class that parses user input and converts it into executable commands.
+ */
 public class Parser {
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    /**
+     * Parses user input and returns the corresponding command.
+     *
+     * @param fullCommand The raw user input string.
+     * @return A command representing the user's action.
+     * @throws AresException If the command is invalid or improperly formatted.
+     */
     public static Command parse(String fullCommand) throws AresException {
         String[] parts = fullCommand.split(" ", 2);
         String command = parts[0];
@@ -63,6 +73,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the given user input and returns the correct integer value.
+     *
+     * @param arguments The raw user input string.
+     * @return An integer that representing the taskNumber the user specified.
+     * @throws OutOfBoundException value provided by the user is invalid.
+     */
     private static int parseTaskNumber(String arguments) throws OutOfBoundException {
         try {
             int taskNum = Integer.parseInt(arguments) - 1;
@@ -75,6 +92,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts the given user input time and returns the correct format that is to be used.
+     *
+     * @param dateTime The raw user input string.
+     * @return A LocalDateTime object that represents the time the user specified.
+     * @throws OutOfBoundException If the value provided by the user is not in the correct format.
+     */
     public static LocalDateTime parseLocalDateTime(String dateTime) throws AresException {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_FORMAT);
