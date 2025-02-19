@@ -28,8 +28,8 @@ public class MarkCommand extends Command {
     /**
      * Executes the mark command by marking the tasks in the TaskList as Done with a X.
      *
-     * @param tasks   The list of tasks.
-     * @param ui      The user interface for displaying messages.
+     * @param tasks The list of tasks.
+     * @param ui The user interface for displaying messages.
      * @param storage The storage handler for saving and loading tasks.
      * @throws AresException If an error occurs while saving or the index provided is invalid.
      */
@@ -50,11 +50,22 @@ public class MarkCommand extends Command {
     /**
      * Returns the response after execution.
      *
-     * @param tasks   The list of tasks.
+     * @param tasks The list of tasks.
      * @param taskNum    The user interface for displaying messages.
      */
     public String response(TaskList tasks, int taskNum) {
         return "NICE, I have marked this task as completed:\n"
-                + tasks.getTask(taskNum).toString() + "\n";
+                + getString(tasks, taskNum) + "\n";
+    }
+
+    /**
+     * Returns string of the task.
+     *
+     * @param tasks The list of tasks.
+     * @param taskNum The user interface for displaying messages.
+     * @return The string of the task.
+     */
+    private static String getString(TaskList tasks, int taskNum) {
+        return tasks.getTask(taskNum).toString();
     }
 }

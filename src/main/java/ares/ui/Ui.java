@@ -70,7 +70,7 @@ public class Ui {
      */
     public void printMark(TaskList tasks, int taskNum) {
         System.out.println(INDENT + "NICE, I have marked this task as completed:");
-        System.out.println(INDENT + "  " + tasks.getTask(taskNum).toString());
+        System.out.println(INDENT + "  " + getString(tasks, taskNum));
         System.out.println(INDENT + LINE);
     }
 
@@ -79,7 +79,7 @@ public class Ui {
      */
     public void printUnmark(TaskList tasks, int taskNum) {
         System.out.println(INDENT + "Alright, I have marked this task as not completed yet:");
-        System.out.println(INDENT + "  " + tasks.getTask(taskNum).toString());
+        System.out.println(INDENT + "  " + getString(tasks, taskNum));
         System.out.println(INDENT + LINE);
     }
 
@@ -131,9 +131,13 @@ public class Ui {
     }
 
     /**
-     * Displays a message for the user.
+     * Returns string of the task.
+     *
+     * @param tasks The list of tasks.
+     * @param taskNum The user interface for displaying messages.
+     * @return The string of the task.
      */
-    public void printMessage(String message) {
-        System.out.println(message);
+    private static String getString(TaskList tasks, int taskNum) {
+        return tasks.getTask(taskNum).toString();
     }
 }

@@ -60,6 +60,9 @@ public class Ares {
         }
     }
 
+    /**
+     * Print welcome message.
+     */
     public String sayHi() {
         return ui.printWelcome();
     }

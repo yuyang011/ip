@@ -1,10 +1,10 @@
 package ares.command;
 
+import ares.exception.AresException;
 import ares.ui.Ui;
 import ares.task.Task;
 import ares.task.TaskList;
 import ares.storage.Storage;
-import ares.exception.AresException;
 
 /**
  * Represents a command to add a task from the TaskList.
@@ -41,7 +41,7 @@ public class AddCommand extends Command {
      * Returns the response after execution.
      *
      * @param task   The list of tasks.
-     * @param size    The user interface for displaying messages.
+     * @param size   The user interface for displaying messages.
      */
     public String response(Task task, int size) {
         return "Got it. I've added this task: \n"
