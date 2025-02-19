@@ -34,6 +34,10 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
+        assert tasks != null : "Tasklist cannot be null!";
+        assert ui != null : "Ui cannot be null!";
+        assert storage != null : "Storage cannot be null!";
+        assert taskNum >=0 : "Task index cannot be negative";
         if (taskNum >= tasks.size()) {
             throw new OutOfBoundException("You have entered an invalid task number");
         }

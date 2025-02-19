@@ -99,7 +99,8 @@ public class Storage {
     public void save(TaskList tasks) throws AresException {
         File file = new File("./data");
         if (!file.exists()) {
-            file.mkdir();
+            boolean isCreated = file.mkdir();
+            assert isCreated : "File not created!";
         }
         try {
             FileWriter fileWriter = new FileWriter(filePath);

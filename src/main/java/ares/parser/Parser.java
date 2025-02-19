@@ -34,6 +34,7 @@ public class Parser {
      * @throws AresException If the command is invalid or improperly formatted.
      */
     public static Command parse(String fullCommand) throws AresException {
+        assert fullCommand != null && !fullCommand.isEmpty() : "User input cannot be null or empty!";
         String[] parts = fullCommand.split(" ", 2);
         String command = parts[0];
         String arguments = parts.length > 1 ? parts[1] : "";
