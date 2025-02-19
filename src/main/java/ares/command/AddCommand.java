@@ -30,9 +30,22 @@ public class AddCommand extends Command {
      * @throws AresException If an error occurs while saving.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
         tasks.addTask(description);
         ui.printInserted(tasks, tasks.size());
         storage.save(tasks);
+        return response(description, tasks.size());
+    }
+
+    /**
+     * Returns the response after execution.
+     *
+     * @param task   The list of tasks.
+     * @param size    The user interface for displaying messages.
+     */
+    public String response(Task task, int size) {
+        return "Got it. I've added this task: \n"
+                + task.toString() + "\n"
+                + "Now you have " + size + " tasks in the list";
     }
 }

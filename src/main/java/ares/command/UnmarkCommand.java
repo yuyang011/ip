@@ -33,7 +33,7 @@ public class UnmarkCommand extends Command {
      * @throws AresException If an error occurs while saving or the index provided is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
         if (taskNum >= tasks.size()) {
             throw new OutOfBoundException("You have entered an invalid task number");
         }
@@ -43,5 +43,17 @@ public class UnmarkCommand extends Command {
         tasks.getTask(taskNum).markAsNotDone();
         ui.printUnmark(tasks, taskNum);
         storage.save(tasks);
+        return response(tasks, taskNum);
+    }
+
+    /**
+     * Returns the response after execution.
+     *
+     * @param tasks   The list of tasks.
+     * @param taskNum    The user interface for displaying messages.
+     */
+    public String response(TaskList tasks, int taskNum) {
+        return "Alright, I have marked this task as not completed yet:\n"
+                + tasks.getTask(taskNum).toString() + "\n";
     }
 }

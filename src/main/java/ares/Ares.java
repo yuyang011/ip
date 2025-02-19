@@ -51,6 +51,19 @@ public class Ares {
         }
     }
 
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (AresException e) {
+            return ui.printAresException(e.getMessage());
+        }
+    }
+
+    public String sayHi() {
+        return ui.printWelcome();
+    }
+
     /**
      * Entry point of the Ares bot program.
      */

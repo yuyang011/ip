@@ -23,12 +23,13 @@ public class Ui {
     /**
      * Displays a welcome message for the user.
      */
-    public void printWelcome() {
+    public String printWelcome() {
         printLine();
         System.out.println(INDENT + "Hello! I'm Ares");
         System.out.println(INDENT + "Its been awhile");
         System.out.println(INDENT + "What can I do for you today?");
         printLine();
+        return "Hello! I'm Ares\n" + "Its been awhile\n" + "What can I do for you today?\n";
     }
 
     /**
@@ -105,9 +106,10 @@ public class Ui {
     /**
      * Displays the error occurred when executing the program for the user.
      */
-    public void printAresException(String message) {
+    public String printAresException(String message) {
         System.out.println("STOP RIGHT THERE!!! " + message);
         System.out.println(INDENT + LINE);
+        return "STOP RIGHT THERE!!! " + message;
     }
 
     /**

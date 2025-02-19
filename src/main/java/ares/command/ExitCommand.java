@@ -1,6 +1,7 @@
 package ares.command;
 
 import ares.exception.AresException;
+import ares.task.Task;
 import ares.ui.Ui;
 
 import ares.task.TaskList;
@@ -19,8 +20,17 @@ public class ExitCommand extends Command {
      * @param storage The storage handler for saving tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.printBye();
+        return response();
+    }
+
+    /**
+     * Returns the response after execution.
+     */
+    public String response() {
+        return "Nice chatting with you today\n"
+                + "See you again next time.";
     }
 
     /**
