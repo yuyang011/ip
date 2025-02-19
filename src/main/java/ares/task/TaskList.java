@@ -1,5 +1,6 @@
 package ares.task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +81,16 @@ public class TaskList {
         TaskList found = new TaskList();
         for(Task task : this.tasks) {
             if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                found.addTask(task);
+            }
+        }
+        return found;
+    }
+
+    public TaskList findDate(LocalDate date) {
+        TaskList found = new TaskList();
+        for(Task task : this.tasks) {
+            if (task.isScheduledOn(date)) {
                 found.addTask(task);
             }
         }

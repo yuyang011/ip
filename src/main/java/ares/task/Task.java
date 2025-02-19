@@ -1,5 +1,7 @@
 package ares.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a Task with a specific description and completion status.
  */
@@ -61,6 +63,16 @@ public class Task {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Checks if the task is scheduled on the given date.
+     *
+     * @param date The date to check.
+     * @return True if the task is scheduled on the date, false otherwise.
+     */
+    public boolean isScheduledOn(LocalDate date) {
+        return false;
     }
 
     /**
