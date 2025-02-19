@@ -1,8 +1,7 @@
 package ares.ui;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -24,7 +23,7 @@ public class UiTest {
     }
 
     @Test
-    public void testPrintAresException(){
+    public void testPrintAresException() {
         Ui ui = new Ui();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printOutput = new PrintStream(outputStream);

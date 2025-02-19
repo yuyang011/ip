@@ -1,12 +1,9 @@
 package ares.command;
 
 import ares.ui.Ui;
-
 import ares.task.Task;
 import ares.task.TaskList;
-
 import ares.storage.Storage;
-
 import ares.exception.AresException;
 
 /**
