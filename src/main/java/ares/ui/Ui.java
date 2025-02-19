@@ -3,6 +3,7 @@ package ares.ui;
 import ares.task.TaskList;
 import ares.task.Task;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -124,6 +125,24 @@ public class Ui {
             return;
         }
         System.out.println(INDENT + "Here are the matching tasks in your list:");
+        for (int i = 0; i < sameTasks.size(); i++) {
+            System.out.println(INDENT + (i + 1) + "." + sameTasks.getTask(i));
+        }
+        System.out.println(INDENT + LINE);
+    }
+
+    /**
+     * Displays the given task that occurs on a given date.
+     *
+     * @param sameTasks The TaskList containing the tasks that occurs on a given date.
+     */
+    public void printSchedule(TaskList sameTasks, LocalDate date) {
+        if (sameTasks.isEmpty()) {
+            System.out.println(INDENT + "No tasks found for the day.");
+            System.out.println(INDENT + LINE);
+            return;
+        }
+        System.out.println(INDENT + "Here are the scheduled tasks for the day " + date);
         for (int i = 0; i < sameTasks.size(); i++) {
             System.out.println(INDENT + (i + 1) + "." + sameTasks.getTask(i));
         }

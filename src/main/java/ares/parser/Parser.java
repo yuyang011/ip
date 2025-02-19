@@ -1,20 +1,13 @@
 package ares.parser;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import ares.command.*;
 import ares.exception.AresException;
 import ares.exception.OutOfBoundException;
-
-import ares.command.AddCommand;
-import ares.command.MarkCommand;
-import ares.command.Command;
-import ares.command.ExitCommand;
-import ares.command.UnmarkCommand;
-import ares.command.ListCommand;
-import ares.command.DeleteCommand;
-import ares.command.FindCommand;
 
 import ares.task.Todo;
 import ares.task.Event;
@@ -25,6 +18,7 @@ import ares.task.Deadline;
  */
 public class Parser {
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * Parses user input and returns the corresponding command.
@@ -69,6 +63,10 @@ public class Parser {
         case "find":
             checkDescription(parts);
             return new FindCommand(arguments);
+        case "view":
+            checkDescription(parts);
+            LocalDate date = parseLocalDate(arguments);
+            return new ViewCommand(date);
         default:
             throw new AresException("I do not understand what you entered");
         }
@@ -105,6 +103,21 @@ public class Parser {
             return LocalDateTime.parse(dateTime, DATE_TIME_FORMAT);
         } catch (DateTimeParseException e) {
             throw new AresException("The correct time format is YYYY-MM-DD HHmm");
+        }
+    }
+
+    /**
+     * Converts the given user input date and returns the correct format that is to be used.
+     *
+     * @param dateTime The raw user input string.
+     * @return A LocalDate object that represents the time the user specified.
+     * @throws OutOfBoundException If the value provided by the user is not in the correct format.
+     */
+    public static LocalDate parseLocalDate(String dateTime) throws AresException {
+        try {
+            return LocalDate.parse(dateTime, DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new AresException("The correct time format is YYYY-MM-DD");
         }
     }
 

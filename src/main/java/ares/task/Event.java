@@ -1,5 +1,6 @@
 package ares.task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -32,6 +33,17 @@ public class Event extends Task {
     public String toFile() {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         return "E" + super.toFile() + " | " + from.format(outputFormat) + " - " + to.format(outputFormat);
+    }
+
+    /**
+     * Checks if the task is scheduled on the given date.
+     *
+     * @param date The date to check.
+     * @return True if the task is scheduled on the date, false otherwise.
+     */
+    @Override
+    public boolean isScheduledOn(LocalDate date) {
+        return from.toLocalDate().equals(date) || to.toLocalDate().equals(date);
     }
 
     /**
