@@ -16,6 +16,9 @@ public class FindCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
+        assert tasks != null : "Tasklist cannot be null!";
+        assert ui != null : "Ui cannot be null!";
+        assert storage != null : "Storage cannot be null!";
         TaskList sameTasks = tasks.findTasks(keyword);
         ui.printFoundList(sameTasks);
         return response(tasks);

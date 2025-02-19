@@ -1,3 +1,5 @@
 T | 0 | borrow book
 D | 0 | return book | 2001-06-22 1800
 E | 0 | project meeting | 2001-06-22 1800 - 2001-06-23 2000
+T | 0 | run
+T | 0 | walk

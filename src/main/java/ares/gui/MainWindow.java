@@ -54,6 +54,7 @@ public class MainWindow extends AnchorPane {
             javafx.application.Platform.exit();
         }
         userInput.clear();
+        assert userInput.getText().isEmpty() : "User input should be cleared";
     }
 }
 
