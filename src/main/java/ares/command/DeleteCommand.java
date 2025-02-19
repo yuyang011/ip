@@ -34,12 +34,25 @@ public class DeleteCommand extends Command {
      * @throws AresException If an error occurs while saving or the index provided is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
         if (taskNum >= tasks.size()) {
             throw new OutOfBoundException("You have entered an invalid task number");
         }
         Task deletedTask = tasks.deleteTask(taskNum);
         ui.printDeleted(tasks, deletedTask);
         storage.save(tasks);
+        return response(deletedTask, tasks.size());
+    }
+
+    /**
+     * Returns the response after execution.
+     *
+     * @param task   The list of tasks.
+     * @param size    The user interface for displaying messages.
+     */
+    public String response(Task task, int size) {
+        return "Noted. I've removed this task:\n"
+                + task.toString() + "\n"
+                + "Now you have " + size + " tasks in the list";
     }
 }

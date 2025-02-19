@@ -20,7 +20,7 @@ public abstract class Command {
      * @param storage The storage handler for saving and loading tasks.
      * @throws AresException If an error occurs during execution.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws AresException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws AresException;
 
     /**
      * Determines if the command is exit command.
