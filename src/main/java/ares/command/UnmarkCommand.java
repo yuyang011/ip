@@ -58,6 +58,17 @@ public class UnmarkCommand extends Command {
      */
     public String response(TaskList tasks, int taskNum) {
         return "Alright, I have marked this task as not completed yet:\n"
-                + tasks.getTask(taskNum).toString() + "\n";
+                + getString(tasks, taskNum) + "\n";
+    }
+
+    /**
+     * Returns string of the task.
+     *
+     * @param tasks The list of tasks.
+     * @param taskNum The user interface for displaying messages.
+     * @return The string of the task.
+     */
+    private static String getString(TaskList tasks, int taskNum) {
+        return tasks.getTask(taskNum).toString();
     }
 }
