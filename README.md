@@ -1,26 +1,122 @@
-# Duke project template
+# Ares User Guide
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+![Alt Text](docs/Ui.png)
 
-## Setting up in Intellij
+Ares is a **Personal Assistant Chatbot** that helps you keep track of and organize your day-to-day tasks. This User Guide will explain to you how to effectively use the Ares chatbot.
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+1. [Features](#features)
+   - [Adding a task:](#adding-a-task:) `todo` `deadline` `event`
+   - [Deleting a task:](#deleting-a-task:) `delete`
+   - [Exiting the Chatbot:](#exiting-the-Chatbot:) `bye`
+   - [Finding a task:](#finding-a-task:) `find`
+   - [Listing the task in the list:](#listing-the-task-in-the-list:) `list`
+   - [Marking the task done:](#marking-the-task-done:) `mark`
+   - [Unmarking the task not done:](#unmarking-the-task-not-done:) `unmark`
+   - [Viewing the schedule on a date:](#viewing-the-schedule-on-a-date:) `view`
+2. [Saving the data](#saving-the-data)
+3. [Editing the file](#editing-the-file)
+4. [Command Summary](#command-summary)
+4. [Acknowledgements](#acknowledgements)
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+## Features
+### Adding a task: `todo` `deadline` `event`
+Adds a task into the list
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+Format: `todo DESCRIPTION` `deadline DESCRIPTION /by DATE` `event DESCRIPTION /from DATE /to DATE`
+Examples:
+- `todo read book`
+- `deadline return book /by 2001-06-22 1800`
+- `event project meeting /from 2001-06-22 1800 /to 2001-06-23 2000`
+
+:warning: DATE must be in YYYY-MM-DD HHmm format
+
+### Deleting a task: `delete`
+Deletes a certain task by the index in the list
+
+Format: `delete INDEX`
+
+Examples:
+- `delete 1` Deletes the first task in the list
+
+### Exiting the Chatbot: `bye`
+Exits and closes the chatbot
+
+Format: `bye`
+
+Examples:
+- `bye` closes the chatbot
+
+### Finding a task: `find`
+Finds a tasks matching the keyword in the list
+
+Format: `find DESCRIPTION`
+
+Examples:
+- `find homework` The chatbot searches and shows all tasks that contains the DESCRIPTION in its list
+
+:warning: DESCRIPTION must be as detailed as possible to get the most accurate result
+
+### Listing the task in the list: `list`
+Shows the current tasks in the list
+
+Format: `list`
+
+Examples:
+- `list` show the list of tasks
+
+### Marking the task done: `mark`
+Marks the task by the given index in the list as done with an X
+
+Format: `mark INDEX`
+
+Examples:
+- `mark 3` Marks the 3rd task in the list as done
+
+### Unmarking the task not done: `unmark`
+Unmarks the task by the given index in the list as done with a blank space
+
+Format: `unmark INDEX`
+
+Examples:
+- `unmark 3` Marks the 3rd task in the list as not done
+
+### Viewing the schedule on a date: `view`
+Shows the task that occurs on the given date
+
+Format: `view DATE`
+
+Examples:
+- `view 2001-06-22` Shows all the tasks that occurs on the given date
+
+:warning: DATE must be in YYYY-MM-DD format
+
+## Saving the data
+
+Ares chatbot will automatically save all data in the harddisk after all changes.
+
+There is no need to save manually
+
+## Editing the file
+
+Ares chatbot automatically saves data into `[JAR file location]/data/ares.txt`
+
+Users are free to modify the file at their own risk
+
+:warning: However if the format is invalid, Ares chatbot will remove the data file and create 
+a new data file.
+
+## Command Summary
+
+| Command   | Format    | 
+|-----------|-----------|
+| Add  | `todo DESCRIPTION` `deadline DESCRIPTION /by DATE`<br>`event DESCRIPTION /from DATE /to DATE`  | 
+| Delete  | `delete INDEX`  |
+| Exit  | `bye`  |
+| Find | `find DESCRIPTION`  |
+| List  | `list`  |
+| Mark  | `mark INDEX`  |
+| Unmark  | `unmark INDEX`  |
+| View  | `view DATE`  |
+
+## Acknowledgements
+Some javadocs comments and description was modified with the help of chatgpt
