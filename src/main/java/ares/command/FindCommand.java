@@ -32,7 +32,7 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
         TaskList sameTasks = tasks.findTasks(keyword);
         ui.printFoundList(sameTasks);
-        return response(tasks);
+        return response(sameTasks);
     }
 
     /**
