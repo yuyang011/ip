@@ -5,14 +5,14 @@
 Ares is a **Personal Assistant Chatbot** that helps you keep track of and organize your day-to-day tasks. This User Guide will explain to you how to effectively use the Ares chatbot.
 
 1. [Features](#features)
-   - [Adding a task:](#adding-a-task:) `todo` `deadline` `event`
-   - [Deleting a task:](#deleting-a-task:) `delete`
-   - [Exiting the Chatbot:](#exiting-the-Chatbot:) `bye`
-   - [Finding a task:](#finding-a-task:) `find`
-   - [Listing the task in the list:](#listing-the-task-in-the-list:) `list`
-   - [Marking the task done:](#marking-the-task-done:) `mark`
-   - [Unmarking the task not done:](#unmarking-the-task-not-done:) `unmark`
-   - [Viewing the schedule on a date:](#viewing-the-schedule-on-a-date:) `view`
+   - [Adding a task:](##adding-a-task) `todo` `deadline` `event`
+   - [Deleting a task:](#deleting-a-task) `delete`
+   - [Exiting the Chatbot:](#exiting-the-Chatbot) `bye`
+   - [Finding a task:](#finding-a-task) `find`
+   - [Listing the task in the list:](#listing-the-task-in-the-lis) `list`
+   - [Marking the task done:](#marking-the-task-done) `mark`
+   - [Unmarking the task not done:](#unmarking-the-task-not-done) `unmark`
+   - [Viewing the schedule on a date:](#viewing-the-schedule-on-a-date) `view`
 2. [Saving the data](#saving-the-data)
 3. [Editing the file](#editing-the-file)
 4. [Command Summary](#command-summary)
