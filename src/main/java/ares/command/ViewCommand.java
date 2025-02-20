@@ -44,7 +44,7 @@ public class ViewCommand extends Command {
      */
     public String response(TaskList tasks) {
         if (tasks.isEmpty()) {
-            return "No matching tasks found.";
+            return "No tasks found for the day.";
         }
         StringBuilder scheduleForDate = new StringBuilder("Here are the scheduled tasks for " + date + ":\n");
         for (int i = 0; i < tasks.size(); i++) {
