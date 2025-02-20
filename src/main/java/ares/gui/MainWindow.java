@@ -24,7 +24,7 @@ public class MainWindow extends AnchorPane {
     private Ares ares;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image aresImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
     public void initialize() {
@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     public void setAres(Ares a) {
         ares = a;
         dialogContainer.getChildren().add(
-                DialogBox.getAresDialog(a.sayHi(), dukeImage));
+                DialogBox.getAresDialog(a.sayHi(), aresImage));
     }
 
     /**
@@ -48,13 +48,12 @@ public class MainWindow extends AnchorPane {
         String response = ares.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getAresDialog(response, dukeImage)
+                DialogBox.getAresDialog(response, aresImage)
         );
-        if(input.toLowerCase().equals(("bye").toLowerCase())) {
+        if (input.toLowerCase().equals(("bye").toLowerCase())) {
             javafx.application.Platform.exit();
         }
         userInput.clear();
         assert userInput.getText().isEmpty() : "User input should be cleared";
     }
 }
-

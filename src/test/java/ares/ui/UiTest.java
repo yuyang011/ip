@@ -1,10 +1,11 @@
 package ares.ui;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import org.junit.jupiter.api.Test;
 
 public class UiTest {
     @Test
@@ -29,7 +30,7 @@ public class UiTest {
         PrintStream printOutput = new PrintStream(outputStream);
         System.setOut(printOutput);
         ui.printAresException("wrong input");
-        String expectedOutput = "STOP RIGHT THERE!!! wrong input\r\n"
+        String expectedOutput = "   STOP RIGHT THERE!!! wrong input\r\n"
                 + "   --------------------------------------------------------------\r\n";
         assertEquals(expectedOutput, outputStream.toString());
     }

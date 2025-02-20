@@ -1,34 +1,37 @@
 package ares.command;
 
+import java.time.LocalDate;
+
 import ares.exception.AresException;
 import ares.storage.Storage;
-
-import ares.task.Task;
 import ares.task.TaskList;
 import ares.ui.Ui;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
+/**
+ * Represents a command to view tasks that occurs on a certain date in the program.
+ */
 public class ViewCommand extends Command {
     private final LocalDate date;
 
+    /**
+     * Constructs a new ViewCommand with the specified date.
+     *
+     * @param date The date the task to find occurs on.
+     */
     public ViewCommand(LocalDate date) {
         this.date = date;
     }
 
     /**
-     * Executes the list command by displaying all tasks in the TaskList.
+     * Executes the view command by displaying task that occurs on a certain date in the TaskList.
      *
      * @param tasks   The list of tasks.
      * @param ui      The user interface for displaying messages.
      * @param storage The storage handler for saving and loading tasks.
+     * @return A string that describes what the execution has done.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws AresException {
-        assert tasks != null : "Tasklist cannot be null!";
-        assert ui != null : "Ui cannot be null!";
-        assert storage != null : "Storage cannot be null!";
         TaskList sameDate = tasks.findDate(date);
         ui.printSchedule(sameDate, date);
         return response(sameDate);

@@ -1,10 +1,8 @@
 package ares.command;
 
-import ares.ui.Ui;
-
-import ares.task.TaskList;
-
 import ares.storage.Storage;
+import ares.task.TaskList;
+import ares.ui.Ui;
 
 /**
  * Represents a command to list the tasks in the TaskList.
@@ -17,12 +15,10 @@ public class ListCommand extends Command {
      * @param tasks   The list of tasks.
      * @param ui      The user interface for displaying messages.
      * @param storage The storage handler for saving and loading tasks.
+     * @return A string that describes what the execution has done.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        assert tasks != null : "Tasklist cannot be null!";
-        assert ui != null : "Ui cannot be null!";
-        assert storage != null : "Storage cannot be null!";
         ui.printList(tasks);
         return response(tasks);
     }

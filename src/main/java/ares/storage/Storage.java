@@ -1,31 +1,28 @@
 package ares.storage;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.BufferedWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 
+import ares.exception.AresException;
+import ares.task.Deadline;
+import ares.task.Event;
 import ares.task.Task;
 import ares.task.TaskList;
 import ares.task.Todo;
-import ares.task.Event;
-import ares.task.Deadline;
-
-import ares.exception.AresException;
 
 /**
  * Represents a class that handles saving and loading tasks to a file.
  */
 public class Storage {
-    private final String filePath;
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private final String filePath;
 
     /**
      * Constructs a new Storage with the specified filePath.
@@ -48,6 +45,9 @@ public class Storage {
         if (!file.exists()) {
             return tasks;
         }
+        //Solution below inspired by
+        //https://www.geeksforgeeks.org/difference-between-bufferedreader-and-filereader-in-java/
+        //Learnt how to read from a file using above website
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
@@ -103,6 +103,8 @@ public class Storage {
             assert isCreated : "File not created!";
         }
         try {
+            //Solution below inspired by https://www.geeksforgeeks.org/io-bufferedwriter-class-methods-java/
+            //Learnt how to write to a file using above website
             FileWriter fileWriter = new FileWriter(filePath);
             BufferedWriter writer = new BufferedWriter(fileWriter);
             for (Task task : tasks.getTasks()) {

@@ -5,13 +5,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import ares.command.*;
+import ares.command.AddCommand;
+import ares.command.Command;
+import ares.command.DeleteCommand;
+import ares.command.ExitCommand;
+import ares.command.FindCommand;
+import ares.command.ListCommand;
+import ares.command.MarkCommand;
+import ares.command.UnmarkCommand;
+import ares.command.ViewCommand;
 import ares.exception.AresException;
 import ares.exception.OutOfBoundException;
-
-import ares.task.Todo;
-import ares.task.Event;
 import ares.task.Deadline;
+import ares.task.Event;
+import ares.task.Todo;
 
 /**
  * Represents a class that parses user input and converts it into executable commands.
@@ -39,26 +46,34 @@ public class Parser {
         case "list":
             return new ListCommand();
         case "mark":
+            checkDescription(parts);
             return new MarkCommand(parseTaskNumber(arguments));
         case "unmark":
+            checkDescription(parts);
             return new UnmarkCommand(parseTaskNumber(arguments));
         case "todo":
             checkDescription(parts);
             Todo todo = new Todo(parts[1]);
             return new AddCommand(todo);
         case "deadline":
+            checkDescription(parts);
             String[] subParts = parts[1].split(" /by ");
+            checkDeadline(subParts);
             LocalDateTime by = parseLocalDateTime(subParts[1]);
             Deadline deadline = new Deadline(subParts[0], by);
             return new AddCommand(deadline);
         case "event":
+            checkDescription(parts);
             String[] eventParts = parts[1].split(" /from ");
+            checkEventFrom(eventParts);
             String[] eventSubParts = eventParts[1].split(" /to ");
             LocalDateTime from = parseLocalDateTime(eventSubParts[0]);
+            checkEventTo(eventSubParts);
             LocalDateTime to = parseLocalDateTime(eventSubParts[1]);
             Event event = new Event(eventParts[0], from, to);
             return new AddCommand(event);
         case "delete":
+            checkDescription(parts);
             return new DeleteCommand(parseTaskNumber(arguments));
         case "find":
             checkDescription(parts);
@@ -121,9 +136,51 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the given input data is in a valid format.
+     *
+     * @param inputParts The raw user input string.
+     * @throws AresException If the value provided by the user is not in the correct format or empty.
+     */
     private static void checkDescription(String[] inputParts) throws AresException {
         if (inputParts.length == 1 || inputParts[1].trim().isEmpty()) {
             throw new AresException("Invalid description entered!!!");
+        }
+    }
+
+    /**
+     * Checks if the given input data after deadline is in a valid format.
+     *
+     * @param inputParts The raw user input string.
+     * @throws AresException If the value provided by the user is not in the correct format or empty.
+     */
+    private static void checkDeadline(String[] inputParts) throws AresException {
+        if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+            throw new AresException("Time and date must be followed after /by ");
+        }
+    }
+
+    /**
+     * Checks if the given input data after event is in a valid format.
+     *
+     * @param inputParts The raw user input string.
+     * @throws AresException If the value provided by the user is not in the correct format or empty.
+     */
+    private static void checkEventFrom(String[] inputParts) throws AresException {
+        if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+            throw new AresException("Time and date must be followed after /from ");
+        }
+    }
+
+    /**
+     * Checks if the given input data after event /from is in a valid format.
+     *
+     * @param inputParts The raw user input string.
+     * @throws AresException If the value provided by the user is not in the correct format or empty.
+     */
+    private static void checkEventTo(String[] inputParts) throws AresException {
+        if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+            throw new AresException("Time and date must be followed after /to ");
         }
     }
 }

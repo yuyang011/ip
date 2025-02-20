@@ -1,12 +1,8 @@
 package ares.command;
 
-import ares.exception.AresException;
-import ares.task.Task;
-import ares.ui.Ui;
-
-import ares.task.TaskList;
-
 import ares.storage.Storage;
+import ares.task.TaskList;
+import ares.ui.Ui;
 
 /**
  * Represents a command to exit the program.
@@ -18,12 +14,10 @@ public class ExitCommand extends Command {
      * @param tasks   The list of tasks.
      * @param ui      The user interface for displaying messages.
      * @param storage The storage handler for saving tasks.
+     * @return A string that describes what the execution has done.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        assert tasks != null : "Tasklist cannot be null!";
-        assert ui != null : "Ui cannot be null!";
-        assert storage != null : "Storage cannot be null!";
         ui.printBye();
         return response();
     }

@@ -73,13 +73,24 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Checks whether the TasKList is empty.
+     *
+     * @return True if it is empty, false otherwise.
+     */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }
 
+    /**
+     * Finds a task from the TaskList.
+     *
+     * @param keyword The task to be found.
+     * @return A TaskList of task that matches the given keyword.
+     */
     public TaskList findTasks(String keyword) {
         TaskList found = new TaskList();
-        for(Task task : this.tasks) {
+        for (Task task : this.tasks) {
             if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
                 found.addTask(task);
             }
@@ -87,9 +98,15 @@ public class TaskList {
         return found;
     }
 
+    /**
+     * Finds a task that matches the given date from the TaskList.
+     *
+     * @param date The date to be found.
+     * @return A TaskList of task that occurs on the given date.
+     */
     public TaskList findDate(LocalDate date) {
         TaskList found = new TaskList();
-        for(Task task : this.tasks) {
+        for (Task task : this.tasks) {
             if (task.isScheduledOn(date)) {
                 found.addTask(task);
             }

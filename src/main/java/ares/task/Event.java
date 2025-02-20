@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
  * Represents an Event task with a specific start and end time.
  */
 public class Event extends Task {
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
     /**
      * Constructs a new Event task with a description and a specific start and end time.
@@ -53,7 +53,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         return "[E]" + super.toString() + " (from: " + this.from.format(outputFormat)
                 + " to: " + this.to.format(outputFormat) + ")";
     }

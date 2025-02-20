@@ -53,7 +53,7 @@ public class Task {
      * @return A string representing the Task into the file format.
      */
     public String toFile() {
-        return " | " + (status() ? "1" : "0") + " | " + this.description ;
+        return " | " + (status() ? "1" : "0") + " | " + this.description;
     }
 
     /**

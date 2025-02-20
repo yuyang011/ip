@@ -6,4 +6,9 @@ mark 1
 list
 delete 2
 list
+view 2001-06-22
+unmark 1
+lis
+delete 1
+delete 1
 bye

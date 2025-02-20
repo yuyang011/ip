@@ -1,12 +1,9 @@
 package ares.command;
 
-import ares.ui.Ui;
-
-import ares.task.TaskList;
-
-import ares.storage.Storage;
-
 import ares.exception.AresException;
+import ares.storage.Storage;
+import ares.task.TaskList;
+import ares.ui.Ui;
 
 /**
  * Represents an abstract command that can be executed.

@@ -1,17 +1,16 @@
 package ares;
 
-import ares.storage.Storage;
-import ares.ui.Ui;
-import ares.task.TaskList;
-import ares.exception.AresException;
 import ares.command.Command;
+import ares.exception.AresException;
 import ares.parser.Parser;
+import ares.storage.Storage;
+import ares.task.TaskList;
+import ares.ui.Ui;
 
 /**
- * Main class that acts as the entry point for the Ares bot.
+ * Acts as the entry point for the Ares bot Main class.
  */
 public class Ares {
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -43,6 +42,9 @@ public class Ares {
                 String fullCommand = ui.readNextLine();
                 ui.printLine();
                 Command c = Parser.parse(fullCommand);
+                assert tasks != null : "Tasklist cannot be null!";
+                assert ui != null : "Ui cannot be null!";
+                assert storage != null : "Storage cannot be null!";
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (AresException e) {
@@ -61,14 +63,14 @@ public class Ares {
     }
 
     /**
-     * Print welcome message.
+     * Prints welcome message.
      */
     public String sayHi() {
         return ui.printWelcome();
     }
 
     /**
-     * Entry point of the Ares bot program.
+     * Acts as Ares bot program entry point.
      */
     public static void main(String[] args) {
         new Ares("data/ares.txt").run();

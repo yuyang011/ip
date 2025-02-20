@@ -1,10 +1,10 @@
 package ares.ui;
 
-import ares.task.TaskList;
-import ares.task.Task;
-
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import ares.task.Task;
+import ares.task.TaskList;
 
 /**
  * Shows the interaction with the user by displaying messages and TaskList.
@@ -108,7 +108,7 @@ public class Ui {
      * Displays the error occurred when executing the program for the user.
      */
     public String printAresException(String message) {
-        System.out.println("STOP RIGHT THERE!!! " + message);
+        System.out.println(INDENT + "STOP RIGHT THERE!!! " + message);
         System.out.println(INDENT + LINE);
         return "STOP RIGHT THERE!!! " + message;
     }
