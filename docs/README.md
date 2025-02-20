@@ -1,19 +1,18 @@
 # Ares User Guide
 
-
-
+![Alt Text](Ui.png)
 
 Ares is a **Personal Assistant Chatbot** that helps you keep track of and organize your day-to-day tasks. This User Guide will explain to you how to effectively use the Ares chatbot.
 
 1. [Features](#features)
-   - [Adding a task:](###Adding-a-task) `todo` `deadline` `event`
-   - [Deleting a task:](###Deleting-a-task) `delete`
-   - [Exiting the Chatbot:](###Exiting-the-Chatbot) `bye`
-   - [Finding a task:](#Finding-a-task) `find`
-   - [Listing the task in the list:](#Listing-the-task-in-the-list) `list`
-   - [Marking the task done:](#Marking-the-task-done) `mark`
-   - [Unmarking the task not done:](#Unmarking-the-task-not-done) `unmark`
-   - [Viewing the schedule on a date:](#Viewing-the-schedule-on-a-date) `view`
+   - [Adding a task:](#adding-a-task) `todo` `deadline` `event`
+   - [Deleting a task:](#deleting-a-task) `delete`
+   - [Exiting the Chatbot:](#exiting-the-Chatbot) `bye`
+   - [Finding a task:](#finding-a-task) `find`
+   - [Listing the task in the list:](#listing-the-task-in-the-list) `list`
+   - [Marking the task done:](#marking-the-task-done) `mark`
+   - [Unmarking the task not done:](#unmarking-the-task-not-done) `unmark`
+   - [Viewing the schedule on a date:](#viewing-the-schedule-on-a-date) `view`
 2. [Saving the data](#saving-the-data)
 3. [Editing the file](#editing-the-file)
 4. [Command Summary](#command-summary)
@@ -29,7 +28,7 @@ Examples:
 - `deadline return book /by 2001-06-22 1800`
 - `event project meeting /from 2001-06-22 1800 /to 2001-06-23 2000`
 
-:warning: DATE must be in YYYY-MM-DD HHmm format
+⛔ DATE must be in YYYY-MM-DD HHmm format
 
 ### Deleting a task: `delete`
 Deletes a certain task by the index in the list
@@ -55,7 +54,7 @@ Format: `find DESCRIPTION`
 Examples:
 - `find homework` The chatbot searches and shows all tasks that contains the DESCRIPTION in its list
 
-:warning: DESCRIPTION must be as detailed as possible to get the most accurate result
+⛔ DESCRIPTION must be as detailed as possible to get the most accurate result
 
 ### Listing the task in the list: `list`
 Shows the current tasks in the list
@@ -89,7 +88,7 @@ Format: `view DATE`
 Examples:
 - `view 2001-06-22` Shows all the tasks that occurs on the given date
 
-:warning: DATE must be in YYYY-MM-DD format
+⛔ DATE must be in YYYY-MM-DD format
 
 ## Saving the data
 
@@ -103,7 +102,7 @@ Ares chatbot automatically saves data into `[JAR file location]/data/ares.txt`
 
 Users are free to modify the file at their own risk
 
-:warning: However if the format is invalid, Ares chatbot will remove the data file and create 
+⛔ However if the format is invalid, Ares chatbot will remove the data file and create 
 a new data file.
 
 ## Command Summary
